@@ -34,4 +34,4 @@ VOLUME ["/var/lib/php5/sessions"]
 
 EXPOSE 9000
 
-CMD ["php-fpm"]
+CMD ["php5-fpm"]
