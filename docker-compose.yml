@@ -1,0 +1,6 @@
+nginx:
+  image: yfix/php
+  container_name: yfix_test_php
+  ports:
+    - 39001:9000
+  restart: always
