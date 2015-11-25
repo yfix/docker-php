@@ -4,7 +4,7 @@ MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 
 RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /etc/apt/sources.list.d/php56.list && \
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C && \
-  && \
+  \
   apt-get update && \
   apt-get install -y \
     php5 \
@@ -24,19 +24,19 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
     php5-dev \
     php-pear \
     libyaml-dev \
-  && \
+    && \
   php5dismod opcache && \
-  && \
+  \
   (yes '' | pecl install yaml) && \
   echo "extension=yaml.so" > /etc/php5/mods-available/yaml.ini && \
   php5enmod yaml && \
-  && \
+  \
   (yes '' | pecl install channel://pecl.php.net/xhprof-0.9.4) && \
   echo "extension=xhprof.so" > /etc/php5/mods-available/xhprof.ini && \
   php5enmod xhprof && \
-  && \
+  \
   php -m 2>&1 && \
-  && \
+  \
   apt-get autoremove -y && \
   apt-get clean -y
   
