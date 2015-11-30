@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM yfix/baseimage
 
 MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 
@@ -43,5 +43,3 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
 COPY container-files /
 
 EXPOSE 9000
-
-CMD ["php5-fpm", "--nodaemonize"]
