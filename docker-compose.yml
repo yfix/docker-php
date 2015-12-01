@@ -5,9 +5,12 @@ nginx:
     - 39001:9000
   restart: always
   volumes:
-    - ./container-files/var/lib/php5/sessions:/var/lib/php5/sessions
     - ./container-files/etc/php5/cli/php.ini:/etc/php5/cli/php.ini
     - ./container-files/etc/php5/fpm/php.ini:/etc/php5/fpm/php.ini
     - ./container-files/etc/php5/fpm/php-fpm.conf:/etc/php5/fpm/php-fpm.conf
     - ./container-files/etc/php5/fpm/pool.d/www.conf:/etc/php5/fpm/pool.d/www.conf
     - ./container-files/var/log/php5:/var/log/php5
+    - ./container-files/var/lib/php5/sessions:/var/lib/php5/sessions
+    - ./container-files/etc/supervisor/conf.d/php5-fpm.conf:/etc/supervisor/conf.d/php5-fpm.conf
+    - ./container-files/var/log/supervisor:/var/log/supervisor
+    - ./container-files/var/www:/var/www
