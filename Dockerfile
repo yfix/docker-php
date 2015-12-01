@@ -28,6 +28,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
     libyaml-dev \
   \
   && php5dismod opcache \
+  && php5dismod xdebug \
   \
   && (yes '' | pecl install yaml) \
   && echo "extension=yaml.so" > /etc/php5/mods-available/yaml.ini \
