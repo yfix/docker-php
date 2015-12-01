@@ -38,7 +38,10 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
   && php5enmod xhprof \
   \
   && php -m 2>&1 \
-  \
+
+&& echo "end of the part 1"
+
+RUN echo "start part 2"  \
   && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
   && composer --version \
   && echo "PATH VARIABLE: "$PATH \
