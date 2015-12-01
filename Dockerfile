@@ -2,6 +2,9 @@ FROM yfix/baseimage
 
 MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 
+ENV COMPOSER_HOME /usr/local/share/composer
+ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
+
 RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /etc/apt/sources.list.d/php56.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   \
@@ -35,6 +38,10 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
   && php5enmod xhprof \
   \
   && php -m 2>&1 \
+  \
+  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+  && composer --version \
+  && echo "PATH VARIABLE: "$PATH \
   \
   && apt-get autoremove -y \
   && apt-get clean -y \
