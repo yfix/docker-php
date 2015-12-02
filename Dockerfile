@@ -26,6 +26,9 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
     php5-dev \
     php-pear \
     libyaml-dev \
+    wget \
+    curl \
+    git \
   \
   && php5dismod opcache \
   && php5dismod xdebug \
