@@ -5,7 +5,7 @@ MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 ENV COMPOSER_HOME /usr/local/share/composer
 ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
 
-RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /etc/apt/sources.list.d/php56.list \
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt/sources.list.d/php7.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   \
   && apt-get update && apt-get install -y \
