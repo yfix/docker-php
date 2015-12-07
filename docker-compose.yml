@@ -1,5 +1,6 @@
 php:
-  image: yfix/php
+#  image: yfix/php
+  build: .
   container_name: yfix_test_php
   ports:
     - 39001:9000
