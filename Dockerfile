@@ -5,7 +5,6 @@ MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 ENV PHP_VERSION 7.0.0
 ENV PHP_INI_DIR /etc/php
 ENV PHP_EXTRA_CONFIGURE_ARGS --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data
-ENV PHP_EXTRA_PECL_EXTENSIONS memcache geoip #### redis mongo
 ENV COMPOSER_HOME /usr/local/share/composer
 ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
 ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
@@ -72,7 +71,7 @@ RUN echo "" \
   && { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
   && echo ""
 
-#ENV PHP_EXTRA_PECL_EXTENSIONS memcached
+COPY container-files /
 
 RUN echo "" \
   \
@@ -89,6 +88,10 @@ RUN echo "" \
 #   && phpenmod $ext \
 #  done \
   \
+  && echo ""
+
+RUN echo "" \
+  \
   && php -v \
   && php -m \
   && php --ini \
@@ -102,8 +105,6 @@ RUN echo "" \
   \
   && echo "the end"
   
-COPY container-files /
-
 WORKDIR /var/www
 
 EXPOSE 9000
