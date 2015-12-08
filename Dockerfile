@@ -9,6 +9,8 @@ ENV COMPOSER_HOME /usr/local/share/composer
 ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
 ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
 
+COPY container-files/usr/local/bin/ /usr/local/bin/
+
 RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
     curl \
@@ -71,8 +73,6 @@ RUN echo "" \
   \
   && { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
   && echo ""
-
-COPY container-files /
 
 RUN echo "" \
   \
@@ -147,6 +147,8 @@ RUN echo "" \
   && rm -rf /var/lib/apt/lists/* \
   \
   && echo "the end"
+
+COPY container-files /
   
 WORKDIR /var/www
 
