@@ -94,6 +94,10 @@ RUN echo "" \
     \
 #    libmagickwand-dev \
   \
+  && echo ""
+
+RUN echo "" \
+  \
   && docker-php-ext-install mysqli \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install mbstring \
@@ -106,6 +110,10 @@ RUN echo "" \
   && docker-php-ext-install mcrypt \
   && docker-php-ext-install opcache \
   \
+  && echo ""
+
+RUN echo "" \
+  \
   && docker-php-ext-configure gd --with-freetype-dir --enable-gd-native-ttf \
   && docker-php-ext-install gd \
   \
@@ -116,7 +124,7 @@ RUN echo "" \
   && cd /tmp && git clone https://github.com/php-memcached-dev/php-memcached.git && cd ./php-memcached && git checkout php7 \
   && phpize && ./configure --disable-memcached-sasl && make && make install \
   && echo 'extension=memcached.so' > /etc/php/conf.d/memcached.ini \
-  && rm -vf /tmp/php-memcached \
+  && cd /tmp && rm -rf /tmp/php-memcached \
   \
 #  && pecl install geoip \
 #  && pecl install imagick-beta \
