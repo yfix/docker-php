@@ -12,6 +12,7 @@ ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
 RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
     curl \
+    git \
     librecode0 \
     libsqlite3-0 \
     libxml2 \
@@ -75,18 +76,52 @@ COPY container-files /
 
 RUN echo "" \
   \
-#  && apt-get install --no-install-recommends -y \
-#    zlib1g-dev \
+  && apt-get install --no-install-recommends -y \
+    \
+    libpng12-dev libjpeg-dev libfreetype6-dev \
+    \
+    libgmp-dev \
+    \
+    libicu-dev \
+    \
+    libmcrypt-dev \
+    \
+    zlib1g-dev \
+    libmemcached-dev \
+    \
 #    libgeoip-dev \
 #    geoip-database \
-#    libmemcached-dev \
-#  \
-#  && for ext in $PHP_EXTRA_PECL_EXTENSIONS; do \
-#    (yes '' | pecl install --nodeps $ext) \
-#    ; \
-#    && echo "extension=$ext.so" > /etc/php/mods-available/$ext.ini \
-#   && phpenmod $ext \
-#  done \
+    \
+#    libmagickwand-dev \
+  \
+  && docker-php-ext-install mysqli \
+  && docker-php-ext-install pdo_mysql \
+  && docker-php-ext-install mbstring \
+  && docker-php-ext-install gettext \
+  && docker-php-ext-install zip \
+  && docker-php-ext-install sockets \
+  && docker-php-ext-install pcntl \
+  && docker-php-ext-install exif \
+  && docker-php-ext-install intl \
+  && docker-php-ext-install mcrypt \
+  && docker-php-ext-install opcache \
+  \
+  && docker-php-ext-configure gd --with-freetype-dir --enable-gd-native-ttf \
+  && docker-php-ext-install gd \
+  \
+  && ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
+  && docker-php-ext-configure gmp --with-gmp=/usr/include/x86_64-linux-gnu \
+  && docker-php-ext-install gmp \
+  \
+  && cd /tmp && git clone https://github.com/php-memcached-dev/php-memcached.git && cd ./php-memcached && git checkout php7 \
+  && phpize && ./configure --disable-memcached-sasl && make && make install \
+  && echo 'extension=memcached.so' > /etc/php/conf.d/memcached.ini \
+  && rm -vf /tmp/php-memcached \
+  \
+#  && pecl install geoip \
+#  && pecl install imagick-beta \
+#  && pecl install xhprof \
+#  && pecl install xcache \
   \
   && echo ""
 
