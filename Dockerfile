@@ -54,6 +54,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libmemcached-dev \
     libmagickwand-dev \
     libgeoip-dev \
+    libyaml-dev \
   " \
   && set -x \
   && apt-get install --no-install-recommends -y $buildDeps \
@@ -129,6 +130,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && phpize && ./configure && make && make install \
   && echo 'extension=redis.so' > /etc/php/conf.d/redis.ini \
   && cd /tmp && rm -rf /tmp/php-redis \
+  \
+  && git clone https://github.com/php/pecl-file_formats-yaml.git /tmp/php-yaml \
+  && cd /tmp/php-yaml && git checkout php7 \
+  && phpize && ./configure && make && make install \
+  && echo 'extension=yaml.so' > /etc/php/conf.d/yaml.ini \
+  && cd /tmp && rm -rf /tmp/php-yaml \
   \
   \
   \
