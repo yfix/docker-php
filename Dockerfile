@@ -89,10 +89,10 @@ RUN echo "" \
     zlib1g-dev \
     libmemcached-dev \
     \
+    libmagickwand-dev \
+    \
 #    libgeoip-dev \
 #    geoip-database \
-    \
-#    libmagickwand-dev \
   \
   && echo ""
 
@@ -121,15 +121,20 @@ RUN echo "" \
   && docker-php-ext-configure gmp --with-gmp=/usr/include/x86_64-linux-gnu \
   && docker-php-ext-install gmp \
   \
-  && cd /tmp && git clone https://github.com/php-memcached-dev/php-memcached.git && cd ./php-memcached && git checkout php7 \
+  && git clone https://github.com/php-memcached-dev/php-memcached.git /tmp/php-memcached \
+  && cd /tmp/php-memcached && git checkout php7 \
   && phpize && ./configure --disable-memcached-sasl && make && make install \
   && echo 'extension=memcached.so' > /etc/php/conf.d/memcached.ini \
   && cd /tmp && rm -rf /tmp/php-memcached \
   \
+  && git clone https://github.com/mkoppanen/imagick.git /tmp/php-imagick \
+  && cd /tmp/php-imagick && git checkout phpseven \
+  && phpize && ./configure && make && make install \
+  && echo 'extension=imagick.so' > /etc/php/conf.d/imagick.ini \
+  && cd /tmp && rm -rf /tmp/php-imagick \
+  \
 #  && pecl install geoip \
-#  && pecl install imagick-beta \
 #  && pecl install xhprof \
-#  && pecl install xcache \
   \
   && echo ""
 
@@ -144,6 +149,7 @@ RUN echo "" \
   && echo "PATH VARIABLE: "$PATH \
   \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false$(dpkg -l | grep ii | grep '\-dev' | awk '{print $2}') \
   && rm -rf /var/lib/apt/lists/* \
   \
   && echo "the end"
