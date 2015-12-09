@@ -147,8 +147,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && composer --version \
   && echo "PATH VARIABLE: "$PATH \
   \
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
+  && apt-get purge -y $buildDeps \
+#  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
 #  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $(dpkg -l | grep ii | grep '\-dev' | awk '{print $2}' | egrep -v "(geoip-)") \
+#  && apt-get autoremove -y \
+  && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /usr/{{lib,share}/locale,share/{man,doc,info,gnome/help,cracklib,il8n},{lib,lib64}/gconv,bin/localedef,sbin/build-locale-archive} \
   \
