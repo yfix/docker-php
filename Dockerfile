@@ -141,7 +141,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && echo "PATH VARIABLE: "$PATH \
   \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false$(dpkg -l | grep ii | grep '\-dev' | awk '{print $2}' | egrep -v "(geoip-)") \
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $(dpkg -l | grep ii | grep '\-dev' | awk '{print $2}' | egrep -v "(geoip-)") \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /usr/{{lib,share}/locale,share/{man,doc,info,gnome/help,cracklib,il8n},{lib,lib64}/gconv,bin/localedef,sbin/build-locale-archive} \
   \
