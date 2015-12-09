@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
     curl \
     git \
+    subversion \
     librecode0 \
     libsqlite3-0 \
     libxml2 \
@@ -91,8 +92,7 @@ RUN echo "" \
     \
     libmagickwand-dev \
     \
-#    libgeoip-dev \
-#    geoip-database \
+    libgeoip-dev \
   \
   && echo ""
 
@@ -133,7 +133,14 @@ RUN echo "" \
   && echo 'extension=imagick.so' > /etc/php/conf.d/imagick.ini \
   && cd /tmp && rm -rf /tmp/php-imagick \
   \
-#  && pecl install geoip \
+  && (yes 'no' | pecl install apcu) \
+  && echo 'extension=apcu.so' > /etc/php/conf.d/apcu.ini \
+  \
+  && svn co http://svn.php.net/repository/pecl/geoip/trunk /tmp/php-geoip && cd /tmp/php-geoip \
+  && phpize && ./configure && make && make install \
+  && echo 'extension=geoip.so' > /etc/php/conf.d/geoip.ini \
+  && cd /tmp && rm -rf /tmp/php-geoip \
+  \
 #  && pecl install xhprof \
   \
   && echo ""
