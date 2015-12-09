@@ -32,9 +32,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   \
   && set -xe \
   && for key in $GPG_KEYS; do gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; done \
-  && echo ""
-
-RUN echo "" \
+  \
+  \
   \
   && buildDeps=" \
     $PHP_EXTRA_BUILD_DEPS \
@@ -45,6 +44,16 @@ RUN echo "" \
     libssl-dev \
     libxml2-dev \
     xz-utils \
+    libpng12-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libgmp-dev \
+    libicu-dev \
+    libmcrypt-dev \
+    zlib1g-dev \
+    libmemcached-dev \
+    libmagickwand-dev \
+    libgeoip-dev \
   " \
   && set -x \
   && apt-get install --no-install-recommends -y $buildDeps \
@@ -73,30 +82,8 @@ RUN echo "" \
   && make clean \
   \
   && { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
-  && echo ""
-
-RUN echo "" \
   \
-  && apt-get install --no-install-recommends -y \
-    \
-    libpng12-dev libjpeg-dev libfreetype6-dev \
-    \
-    libgmp-dev \
-    \
-    libicu-dev \
-    \
-    libmcrypt-dev \
-    \
-    zlib1g-dev \
-    libmemcached-dev \
-    \
-    libmagickwand-dev \
-    \
-    libgeoip-dev \
   \
-  && echo ""
-
-RUN echo "" \
   \
   && docker-php-ext-install mysqli \
   && docker-php-ext-install pdo_mysql \
@@ -109,10 +96,6 @@ RUN echo "" \
   && docker-php-ext-install intl \
   && docker-php-ext-install mcrypt \
   && docker-php-ext-install opcache \
-  \
-  && echo ""
-
-RUN echo "" \
   \
   && docker-php-ext-configure gd --with-freetype-dir --enable-gd-native-ttf \
   && docker-php-ext-install gd \
@@ -141,11 +124,13 @@ RUN echo "" \
   && echo 'extension=geoip.so' > /etc/php/conf.d/geoip.ini \
   && cd /tmp && rm -rf /tmp/php-geoip \
   \
-#  && pecl install xhprof \
+  && git clone https://github.com/phpredis/phpredis.git /tmp/php-redis \
+  && cd /tmp/php-redis && git checkout php7 \
+  && phpize && ./configure && make && make install \
+  && echo 'extension=redis.so' > /etc/php/conf.d/redis.ini \
+  && cd /tmp && rm -rf /tmp/php-redis \
   \
-  && echo ""
-
-RUN echo "" \
+  \
   \
   && php -v \
   && php -m \
@@ -156,8 +141,9 @@ RUN echo "" \
   && echo "PATH VARIABLE: "$PATH \
   \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false$(dpkg -l | grep ii | grep '\-dev' | awk '{print $2}') \
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false$(dpkg -l | grep ii | grep '\-dev' | awk '{print $2}' | egrep -v "(geoip-)") \
   && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /usr/{{lib,share}/locale,share/{man,doc,info,gnome/help,cracklib,il8n},{lib,lib64}/gconv,bin/localedef,sbin/build-locale-archive} \
   \
   && echo "the end"
 
