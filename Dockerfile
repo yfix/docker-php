@@ -10,6 +10,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
   \
   && apt-get update && apt-get install -y \
     php5 \
+    php5-apcu \
     php5-cli \
     php5-curl \
     php5-fpm \
@@ -19,8 +20,9 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
     php5-imagick \
     php5-intl \
     php5-mcrypt \
-    php5-memcache \
+    php5-memcached \
     php5-mysql \
+    php5-redis \
     php5-xcache \
     php5-xdebug \
     php5-dev \
