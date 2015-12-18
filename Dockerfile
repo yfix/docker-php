@@ -10,7 +10,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /et
   \
   && apt-get update && apt-get install -y \
     php5 \
-    php5-apcu \
+#    php5-apcu \
     php5-cli \
     php5-curl \
     php5-fpm \
