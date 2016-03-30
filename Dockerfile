@@ -8,7 +8,6 @@ ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
 RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt/sources.list.d/php.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   \
-<<<<<<< HEAD
   && apt-get update \
   \
   && apt-get purge -y --auto-remove php5-* \
@@ -48,27 +47,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
     php-zmq \
   \
     php-dev \
-=======
-  && apt-get update && apt-get install -y \
-    php5 \
-#    php5-apcu \
-    php5-cli \
-    php5-curl \
-    php5-fpm \
-    php5-gd \
-    php5-geoip \
-    php5-gmp \
-    php5-imagick \
-    php5-intl \
-    php5-mcrypt \
-    php5-memcached \
-    php5-mysql \
-    php5-redis \
-    php5-xcache \
-    php5-xdebug \
-    php5-dev \
-    php-pear \
->>>>>>> 43ffa84c2ff91aab816662e53834676183d84d70
     libyaml-dev \
   \
     wget \
