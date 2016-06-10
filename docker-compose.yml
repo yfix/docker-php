@@ -6,12 +6,12 @@ php:
     - 39009:9000
   restart: always
   volumes:
-    - ./container-files/etc/php/cli/php.ini:/etc/php/cli/php.ini
-    - ./container-files/etc/php/fpm/php.ini:/etc/php/fpm/php.ini
-    - ./container-files/etc/php/fpm/php-fpm.conf:/etc/php/fpm/php-fpm.conf
-    - ./container-files/etc/php/fpm/pool.d/www.conf:/etc/php/fpm/pool.d/www.conf
-    - ./container-files/var/log/php:/var/log/php
-    - ./container-files/var/lib/php/sessions:/var/lib/php/sessions
-    - ./container-files/etc/supervisor/conf.d/php-fpm.conf:/etc/supervisor/conf.d/php-fpm.conf
-    - ./container-files/var/log/supervisor:/var/log/supervisor
-    - ./container-files/var/www:/var/www
+    - ./docker/etc/php/cli/php.ini:/etc/php/cli/php.ini
+    - ./docker/etc/php/fpm/php.ini:/etc/php/fpm/php.ini
+    - ./docker/etc/php/fpm/php-fpm.conf:/etc/php/fpm/php-fpm.conf
+    - ./docker/etc/php/fpm/pool.d/www.conf:/etc/php/fpm/pool.d/www.conf
+    - ./docker/var/log/php:/var/log/php
+    - ./docker/var/lib/php/sessions:/var/lib/php/sessions
+    - ./docker/etc/supervisor/conf.d/php-fpm.conf:/etc/supervisor/conf.d/php-fpm.conf
+    - ./docker/var/log/supervisor:/var/log/supervisor
+    - ./docker/var/www:/var/www

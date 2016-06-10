@@ -110,6 +110,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   && echo "====The end===="
 
-COPY container-files /
+COPY docker /
 
 EXPOSE 9000
