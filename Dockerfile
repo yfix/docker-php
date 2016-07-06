@@ -18,6 +18,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && apt-get install -y \
     php7.0 \
     php7.0-opcache \
+    php7.0-bcmath \
   \
     php-amqp \
     php-apcu \
