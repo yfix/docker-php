@@ -15,7 +15,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && apt-cache search php7 2>&1 \
   && apt-cache search php- 2>&1 | egrep -i "(extension|module)" | grep -v php5.6 | sort \
   \
-  && apt-get install -y \
+  && apt-get install -y --no-install-recommends \
     php7.0 \
     php7.0-opcache \
     php7.0-bcmath \
