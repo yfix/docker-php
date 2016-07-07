@@ -44,6 +44,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
     php-ssh2 \
     php-uploadprogress \
     php-uuid \
+    php-xml \
     php-zip \
     php-zmq \
   \
