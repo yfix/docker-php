@@ -101,8 +101,12 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
   && composer --version \
-  && echo "PATH VARIABLE: "$PATH \
   \
+  && composer global require --prefer-source --no-interaction jakub-onderka/php-parallel-lint \
+  \
+  \
+  && wget https://phar.phpunit.de/phpunit.phar && chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit \
+  && phpunit --version \
   \
   \
   && apt-get purge -y --auto-remove \
