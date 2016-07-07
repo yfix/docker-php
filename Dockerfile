@@ -122,7 +122,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/* \
-  && rm -rf /usr/{{lib,share}/locale,share/{man,doc,info,gnome/help,cracklib,il8n},{lib,lib64}/gconv,bin/localedef,sbin/build-locale-archive} \
+  && rm -rf /usr/{{lib,share}/share/{man,doc,info,gnome/help,cracklib},{lib,lib64}/gconv} \
   \
   && echo "====The end===="
 
