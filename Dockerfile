@@ -49,6 +49,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
     php-dev \
     libyaml-dev \
+    make \
   \
     wget \
     curl \
