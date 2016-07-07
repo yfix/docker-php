@@ -104,6 +104,16 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   \
   \
+  && apt-get purge -y --auto-remove \
+    apache2-bin \
+    autoconf \
+    automake \
+    autotools-dev \
+    binutils \
+    cpp \
+    gcc \
+    php-dev \
+  \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/* \
