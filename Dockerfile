@@ -122,8 +122,8 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /usr/{lib,lib/share,share}/{man,doc,info,gnome/help,cracklib} \
   && rm -rf /tmp/* \
-  && rm -rf /usr/{{lib,share}/share/{man,doc,info,gnome/help,cracklib},{lib,lib64}/gconv} \
   \
   && echo "====The end===="
 
