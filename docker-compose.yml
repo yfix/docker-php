@@ -8,6 +8,7 @@ services:
       - 39009:9000
     restart: always
     volumes:
+      - ./docker/etc/php/conf.d/:/etc/php/conf.d/
       - ./docker/etc/php/cli/php.ini:/etc/php/cli/php.ini
       - ./docker/etc/php/fpm/php.ini:/etc/php/fpm/php.ini
       - ./docker/etc/php/fpm/php-fpm.conf:/etc/php/fpm/php-fpm.conf
