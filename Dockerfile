@@ -97,22 +97,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   \
   \
-  && php -v \
-  && php -m \
-  && php --ini \
-  \
-  \
-  \
-  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-  && composer --version \
-  \
-  && composer global require --prefer-source --no-interaction jakub-onderka/php-parallel-lint \
-  \
-  \
-  && wget https://phar.phpunit.de/phpunit.phar && chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit \
-  && phpunit --version \
-  \
-  \
   && apt-get purge -y --auto-remove \
     apache2-bin \
     autoconf \
@@ -131,5 +115,21 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && echo "====The end===="
 
 COPY docker /
+
+RUN echo "=== check php and install tools ===" \
+  \
+  && php -v \
+  && php -m \
+  && php --ini \
+  \
+  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+  && composer --version \
+  \
+  && composer global require --prefer-source --no-interaction jakub-onderka/php-parallel-lint \
+  \
+  && wget https://phar.phpunit.de/phpunit.phar && chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit \
+  && phpunit --version \
+  \
+  && echo "====The end===="
 
 EXPOSE 9000
