@@ -90,6 +90,9 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   && ln -vs /usr/sbin/php-fpm7.0 /usr/local/sbin/php-fpm \
   \
+  && mkdir -p /etc/php/conf.d.dist/ \
+  && mv -vf /etc/php/conf.d/*.ini /etc/php/conf.d.dist/ \
+  \
   && ls -Rl /etc/php* \
   \
   \
