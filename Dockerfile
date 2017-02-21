@@ -5,6 +5,8 @@ MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 ENV COMPOSER_HOME /usr/local/share/composer
 ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
 
+ARG DEBIAN_FRONTED=noninteractive
+
 RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt/sources.list.d/php.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   \
@@ -16,44 +18,55 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && apt-cache search php- 2>&1 | egrep -i "(extension|module)" | grep -v php5.6 | sort \
   \
   && apt-get install -y --no-install-recommends \
-    php7.0-fpm \
+    php7.0-bz2 \
     php7.0-cli \
+    php7.0-curl \
+    php7.0-fpm \
+    php7.0-gd \
+    php7.0-gmp \
+    php7.0-intl \
+    php7.0-json \
+    php7.0-mbstring \
+    php7.0-mysql \
     php7.0-opcache \
+    php7.0-pgsql \
+    php7.0-sqlite3 \
+    php7.0-xml \
+    php7.0-zip \
   \
     php-amqp \
     php-apcu \
     php-apcu-bc \
     php-bcmath \
-    php-bz2 \
-    php-cli \
-    php-curl \
-    php-fpm \
-    php-gd \
     php-geoip \
-    php-gmp \
     php-igbinary \
     php-imagick \
-    php-intl \
-    php-json \
-    php-mbstring \
     php-memcached \
     php-mongodb \
     php-msgpack \
-    php-mysql \
-    php-pear \
     php-redis \
-    php-sqlite3 \
     php-ssh2 \
     php-uploadprogress \
     php-uuid \
-    php-xml \
     php-yaml \
-    php-zip \
     php-zmq \
   \
     wget \
     curl \
     git \
+  \
+  \
+  \
+  && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.1 | awk '{print $2}') \
+  && apt-get purge -y --auto-remove \
+    apache2-bin \
+    autoconf \
+    automake \
+    autotools-dev \
+    binutils \
+    cpp \
+    gcc \
+    php-dev \
   \
   \
   \
@@ -80,18 +93,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && mv -vf /etc/php/conf.d/*.ini /etc/php/conf.d.dist/ \
   \
   && ls -Rl /etc/php* \
-  \
-  \
-  \
-  && apt-get purge -y --auto-remove \
-    apache2-bin \
-    autoconf \
-    automake \
-    autotools-dev \
-    binutils \
-    cpp \
-    gcc \
-    php-dev \
   \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* \
