@@ -16,13 +16,14 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && apt-cache search php- 2>&1 | egrep -i "(extension|module)" | grep -v php5.6 | sort \
   \
   && apt-get install -y --no-install-recommends \
-    php7.0 \
+    php7.0-fpm \
+    php7.0-cli \
     php7.0-opcache \
-    php7.0-bcmath \
   \
     php-amqp \
     php-apcu \
     php-apcu-bc \
+    php-bcmath \
     php-bz2 \
     php-cli \
     php-curl \
@@ -39,16 +40,16 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
     php-mongodb \
     php-msgpack \
     php-mysql \
+    php-pear \
     php-redis \
     php-sqlite3 \
     php-ssh2 \
     php-uploadprogress \
     php-uuid \
     php-xml \
+    php-yaml \
     php-zip \
     php-zmq \
-    php-yaml \
-    php-dev \
   \
     wget \
     curl \
@@ -56,16 +57,11 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   \
   \
-  && cd /tmp && wget http://pear.php.net/go-pear.phar \
-  && php go-pear.phar \
-  \
-  \
-  \
   && echo "====Fixing links====" \
   \
   && ls -Rl /etc/php* \
   \
-  && rm -vrf /etc/php/5.6 \
+  && rm -vrf /etc/php/5* \
   && rm -vrf /etc/php/7.0/apache* \
   && cp -vrf /etc/php/7.0/* /etc/php/ \
   && rm -vrf /etc/php/7.0/* \
