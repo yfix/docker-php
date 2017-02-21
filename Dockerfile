@@ -47,10 +47,8 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
     php-xml \
     php-zip \
     php-zmq \
-  \
+    php-yaml \
     php-dev \
-    libyaml-dev \
-    make \
   \
     wget \
     curl \
@@ -60,14 +58,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   && cd /tmp && wget http://pear.php.net/go-pear.phar \
   && php go-pear.phar \
-  \
-  \
-  \
-  && git clone https://github.com/php/pecl-file_formats-yaml.git /tmp/php-yaml \
-  && cd /tmp/php-yaml && git checkout php7 \
-  && phpize && ./configure && make && make install \
-  && echo 'extension=yaml.so' > /etc/php/7.0/fpm/conf.d/yaml.ini \
-  && cd /tmp && rm -rf /tmp/php-yaml \
   \
   \
   \
