@@ -70,14 +70,25 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   \
   \
   \
-  && echo "====Fixing links====" \
+  && apt-get clean -y \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /usr/{lib,lib/share,share}/{man,doc,info,gnome/help,cracklib} \
+  && rm -rf /tmp/* \
+  \
+  && echo "====The end===="
+
+RUN echo "====Fixing links====" \
   \
   && ls -Rl /etc/php* \
   \
   && rm -vrf /etc/php/5* \
   && rm -vrf /etc/php/7.0/apache* \
+  \
   && cp -vrf /etc/php/7.0/* /etc/php/ \
+  \
   && rm -vrf /etc/php/7.0/* \
+  && rm -vrf /etc/php/7.1/* \
+  \
   && cp -vrf /etc/php/fpm/conf.d /etc/php/conf.d \
   && ln -vs /etc/php/mods-available /etc/php/7.0/mods-available \
   && ln -vs /etc/php/fpm /etc/php/7.0/fpm \
@@ -93,11 +104,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && mv -vf /etc/php/conf.d/*.ini /etc/php/conf.d.dist/ \
   \
   && ls -Rl /etc/php* \
-  \
-  && apt-get clean -y \
-  && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /usr/{lib,lib/share,share}/{man,doc,info,gnome/help,cracklib} \
-  && rm -rf /tmp/* \
   \
   && echo "====The end===="
 
