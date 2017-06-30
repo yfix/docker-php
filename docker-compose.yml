@@ -3,7 +3,7 @@ services:
   php:
 #    image: yfix/php
     build: .
-    container_name: yfix_test_php
+    container_name: yfix_test_php71
     ports:
       - 39009:9000
     restart: always
