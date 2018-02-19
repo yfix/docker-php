@@ -24,6 +24,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     php7.2-bz2 \
     php7.2-common \
     php7.2-curl \
+    php7.2-dev \
     php7.2-gd \
     php7.2-gmp \
     php7.2-intl \
@@ -45,6 +46,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     php-memcached \
     php-mongodb \
     php-msgpack \
+    php-pear \
     php-redis \
     php-ssh2 \
     php-uploadprogress \
@@ -55,6 +57,13 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     wget \
     curl \
     git \
+    librdkafka-dev \
+  \
+  \
+  \
+  && pecl install -f rdkafka \
+  && echo 'extension=rdkafka.so' > /etc/php/7.2/mods-available/rdkafka.ini \
+  && phpenmod rdkafka \
   \
   \
   \
