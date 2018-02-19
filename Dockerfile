@@ -58,6 +58,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     curl \
     git \
     librdkafka-dev \
+    build-essential \
   \
   \
   \
