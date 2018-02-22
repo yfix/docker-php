@@ -19,6 +19,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
   \
   && apt-get install -y --no-install-recommends \
     php7.1-cli \
+    php7.1-dev \
     php7.1-fpm \
 	php7.1-bcmath \
 	php7.1-bz2 \
