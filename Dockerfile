@@ -45,6 +45,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     php-memcached \
     php-mongodb \
     php-msgpack \
+    php-pear \
     php-redis \
     php-ssh2 \
     php-uploadprogress \
