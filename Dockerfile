@@ -119,7 +119,7 @@ RUN echo "=== check php and install tools ===" \
   \
   && composer global require --prefer-source --no-interaction --no-plugins --no-scripts jakub-onderka/php-parallel-lint \
   \
-  && wget https://phar.phpunit.de/phpunit.phar && chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit \
+  && composer global require --prefer-source --no-interaction --no-plugins --no-scripts --dev phpunit/phpunit ^6.5 \
   && phpunit --version \
   \
   && echo "====The end===="
