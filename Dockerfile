@@ -128,9 +128,9 @@ RUN echo "=== check php and install tools ===" \
   && php --ini \
   \
   && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-  && composer --version \
+  && composer --version --no-plugins --no-scripts 2>/dev/null \
   \
-  && composer global require --prefer-source --no-interaction jakub-onderka/php-parallel-lint \
+  && composer global require --prefer-source --no-interaction --no-plugins --no-scripts jakub-onderka/php-parallel-lint \
   \
   && wget https://phar.phpunit.de/phpunit.phar && chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit \
   && phpunit --version \
