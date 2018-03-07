@@ -49,7 +49,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
     php-uploadprogress \
     php-uuid \
     php-yaml \
-    php-zmq \
   \
     wget \
     curl \
