@@ -31,6 +31,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
     php7.0-opcache \
     php7.0-pgsql \
     php7.0-sqlite3 \
+    php7.0-xdebug \
     php7.0-xml \
     php7.0-zip \
   \
