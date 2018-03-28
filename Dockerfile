@@ -51,6 +51,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     php-ssh2 \
     php-uploadprogress \
     php-uuid \
+    php-xdebug \
     php-yaml \
     php-zmq \
   \
