@@ -68,6 +68,16 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
   \
   \
   \
+  && cd /tmp/ \
+  && git clone https://github.com/longxinH/xhprof.git ./xhprof \
+  && cd xhprof/extension/ \
+  && phpize \
+  && ./configure \
+  && make \
+  && make install
+  \
+  \
+  \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.0 | awk '{print $2}') \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.1 | awk '{print $2}') \
   && apt-get purge -y --auto-remove \
