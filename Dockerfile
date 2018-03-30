@@ -74,7 +74,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
   && phpize \
   && ./configure \
   && make \
-  && make install
+  && make install \
   \
   \
   \
