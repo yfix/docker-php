@@ -63,7 +63,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
   && phpize \
   && ./configure \
   && make \
-  && make install
+  && make install \
   \
   \
   \
