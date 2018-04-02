@@ -56,6 +56,8 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt
     curl \
     git \
     automake \
+    graphviz \
+    imagemagick \
   \
   \
   \
