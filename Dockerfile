@@ -60,6 +60,8 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     git \
     librdkafka-dev \
     build-essential \
+    graphviz \
+    imagemagick \
   \
   \
   \
