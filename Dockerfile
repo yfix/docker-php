@@ -7,7 +7,9 @@ ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
 
 ARG DEBIAN_FRONTED=noninteractive
 
-RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/php.list \
+RUN apt-get update && apt-get install -my wget gnupg \
+  \
+  && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/php.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   \
   && apt-get update \
@@ -36,24 +38,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt
     php7.2-sqlite3 \
     php7.2-xml \
     php7.2-zip \
-  \
-    php-amqp \
-    php-apcu \
-    php-apcu-bc \
-    php-geoip \
-    php-igbinary \
-    php-imagick \
-    php-memcached \
-    php-mongodb \
-    php-msgpack \
-    php-pear \
-    php-redis \
-    php-ssh2 \
-    php-uploadprogress \
-    php-uuid \
-    php-xdebug \
-    php-yaml \
-    php-zmq \
   \
     wget \
     curl \
@@ -101,6 +85,26 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt
   && rm -rf /tmp/* \
   \
   && echo "====The end===="
+
+#  \
+#    php-amqp \
+#    php-apcu \
+#    php-apcu-bc \
+#    php-geoip \
+#    php-igbinary \
+#    php-imagick \
+#    php-memcached \
+#    php-mongodb \
+#    php-msgpack \
+#    php-pear \
+#    php-redis \
+#    php-ssh2 \
+#    php-uploadprogress \
+#    php-uuid \
+#    php-xdebug \
+#    php-yaml \
+#    php-zmq \
+
 
 RUN echo "====Fixing links====" \
   \
