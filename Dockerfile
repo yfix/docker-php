@@ -39,15 +39,33 @@ RUN apt-get update && apt-get install -my wget gnupg \
     php7.2-xml \
     php7.2-zip \
   \
+    php-amqp \
+    php-apcu \
+    php-apcu-bc \
+    php-geoip \
+    php-igbinary \
+    php-imagick \
+    php-memcached \
+    php-mongodb \
+    php-msgpack \
+    php-pear \
+    php-redis \
+    php-ssh2 \
+    php-uploadprogress \
+    php-uuid \
+    php-xdebug \
+    php-yaml \
+    php-zmq \
+  \
     wget \
     curl \
     git \
     librdkafka-dev \
     build-essential \
     graphviz \
-    imagemagick \
-  \
-  \
+    imagemagick
+
+RUN echo "=== continue ===" \
   \
   && pecl install -f rdkafka \
   && echo 'extension=rdkafka.so' > /etc/php/7.2/mods-available/rdkafka.ini \
@@ -84,29 +102,9 @@ RUN apt-get update && apt-get install -my wget gnupg \
   && rm -rf /usr/{lib,lib/share,share}/{man,doc,info,gnome/help,cracklib} \
   && rm -rf /tmp/* \
   \
-  && echo "====The end===="
+  && echo "=== The end ==="
 
-#  \
-#    php-amqp \
-#    php-apcu \
-#    php-apcu-bc \
-#    php-geoip \
-#    php-igbinary \
-#    php-imagick \
-#    php-memcached \
-#    php-mongodb \
-#    php-msgpack \
-#    php-pear \
-#    php-redis \
-#    php-ssh2 \
-#    php-uploadprogress \
-#    php-uuid \
-#    php-xdebug \
-#    php-yaml \
-#    php-zmq \
-
-
-RUN echo "====Fixing links====" \
+RUN echo "=== Fixing links ===" \
   \
   && ls -Rl /etc/php* \
   \
@@ -135,7 +133,7 @@ RUN echo "====Fixing links====" \
   && ls -Rl /etc/php* \
   && cat /etc/php/mods-available/* \
   \
-  && echo "====The end===="
+  && echo "=== The end ==="
 
 COPY docker /
 
@@ -153,6 +151,6 @@ RUN echo "=== check php and install tools ===" \
   && wget https://phar.phpunit.de/phpunit.phar && chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit \
   && phpunit --version \
   \
-  && echo "====The end===="
+  && echo "=== The end ==="
 
 EXPOSE 9000
