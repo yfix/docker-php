@@ -1,4 +1,4 @@
-FROM yfix/baseimage:16.04
+FROM yfix/baseimage:18.04
 
 MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 
@@ -7,7 +7,7 @@ ENV PATH $PATH:$COMPOSER_HOME/vendor/bin/
 
 ARG DEBIAN_FRONTED=noninteractive
 
-RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/php.list \
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/php.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   \
   && apt-get update \
