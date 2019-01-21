@@ -1,4 +1,4 @@
-DOCKER_TAG := 'yfix/php:bionic7.2'
+DOCKER_TAG := 'yfix/php:7.3'
 
 build:
 	docker build -t $(DOCKER_TAG) .
