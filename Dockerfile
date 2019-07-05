@@ -85,6 +85,8 @@ RUN echo "=== continue ===" \
   \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.0 | awk '{print $2}') \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.1 | awk '{print $2}') \
+  && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.2 | awk '{print $2}') \
+  && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.3 | awk '{print $2}') \
   && apt-get purge -y --auto-remove \
     apache2-bin \
     autoconf \
