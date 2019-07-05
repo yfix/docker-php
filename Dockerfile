@@ -14,30 +14,30 @@ RUN apt-get update && apt-get install -my wget gnupg \
   \
   && apt-get update \
   \
-  && apt-get purge -y --auto-remove php5-* php7.0-* php7.1-* \
+  && apt-get purge -y --auto-remove php5-* php7.0-* php7.1-* php7.2-* php7.3-* \
   \
   && apt-cache search php7 2>&1 \
   && apt-cache search php- 2>&1 | egrep -i "(extension|module)" | grep -v php5.6 | sort \
   \
   && apt-get install -y --no-install-recommends \
-    php7.3-cli \
-    php7.3-fpm \
-    php7.3-bcmath \
-    php7.3-bz2 \
-    php7.3-common \
-    php7.3-curl \
-    php7.3-dev \
-    php7.3-gd \
-    php7.3-gmp \
-    php7.3-intl \
-    php7.3-json \
-    php7.3-mbstring \
-    php7.3-mysql \
-    php7.3-opcache \
-    php7.3-pgsql \
-    php7.3-sqlite3 \
-    php7.3-xml \
-    php7.3-zip \
+    php7.4-cli \
+    php7.4-fpm \
+    php7.4-bcmath \
+    php7.4-bz2 \
+    php7.4-common \
+    php7.4-curl \
+    php7.4-dev \
+    php7.4-gd \
+    php7.4-gmp \
+    php7.4-intl \
+    php7.4-json \
+    php7.4-mbstring \
+    php7.4-mysql \
+    php7.4-opcache \
+    php7.4-pgsql \
+    php7.4-sqlite3 \
+    php7.4-xml \
+    php7.4-zip \
   \
     php-amqp \
     php-apcu \
@@ -68,7 +68,7 @@ RUN apt-get update && apt-get install -my wget gnupg \
 RUN echo "=== continue ===" \
   \
   && pecl install -f rdkafka \
-  && echo 'extension=rdkafka.so' > /etc/php/7.3/mods-available/rdkafka.ini \
+  && echo 'extension=rdkafka.so' > /etc/php/7.4/mods-available/rdkafka.ini \
   && phpenmod rdkafka \
   \
   \
@@ -109,23 +109,23 @@ RUN echo "=== Fixing links ===" \
   && ls -Rl /etc/php* \
   \
   && rm -vrf /etc/php/5* \
-  && rm -vrf /etc/php/7.3/apache* \
+  && rm -vrf /etc/php/7.4/apache* \
   \
-  && cp -vrf /etc/php/7.3/* /etc/php/ \
+  && cp -vrf /etc/php/7.4/* /etc/php/ \
   \
-  && rm -vrf /etc/php/7.3/* \
-  && rm -vrf /etc/php/7.3/* \
+  && rm -vrf /etc/php/7.4/* \
+  && rm -vrf /etc/php/7.4/* \
   \
   && cp -vrf /etc/php/fpm/conf.d /etc/php/conf.d \
-  && ln -vs /etc/php/mods-available /etc/php/7.3/mods-available \
-  && ln -vs /etc/php/fpm /etc/php/7.3/fpm \
-  && ln -vs /etc/php/cli /etc/php/7.3/cli \
+  && ln -vs /etc/php/mods-available /etc/php/7.4/mods-available \
+  && ln -vs /etc/php/fpm /etc/php/7.4/fpm \
+  && ln -vs /etc/php/cli /etc/php/7.4/cli \
   && rm -vrf /etc/php/fpm/conf.d \
   && ln -vs /etc/php/conf.d /etc/php/fpm/conf.d \
   && rm -vrf /etc/php/cli/conf.d \
   && ln -vs /etc/php/conf.d /etc/php/cli/conf.d \
   \
-  && ln -vs /usr/sbin/php-fpm7.3 /usr/local/sbin/php-fpm \
+  && ln -vs /usr/sbin/php-fpm7.4 /usr/local/sbin/php-fpm \
   \
   && mkdir -p /etc/php/conf.d.dist/ \
   && mv -vf /etc/php/conf.d/*.ini /etc/php/conf.d.dist/ \
