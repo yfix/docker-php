@@ -1,4 +1,4 @@
-FROM yfix/baseimage
+FROM yfix/baseimage:14.04
 
 MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 
