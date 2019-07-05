@@ -1,9 +1,9 @@
-version: '2'
+version: '3'
 services:
   php:
 #    image: yfix/php
     build: .
-    container_name: yfix_test_bionic_php72
+    container_name: yfix_test_php74
     ports:
       - 39009:9000
     restart: always
