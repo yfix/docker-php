@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -my wget gnupg \
   \
   && apt-get update \
   \
-  && apt-get purge -y --auto-remove php5-* php7.0-* php7.1-* \
+  && apt-get purge -y --auto-remove php5-* php7.0-* php7.1-* php7.2-* \
   \
   && apt-cache search php7 2>&1 \
   && apt-cache search php- 2>&1 | egrep -i "(extension|module)" | grep -v php5.6 | sort \
@@ -85,6 +85,7 @@ RUN echo "=== continue ===" \
   \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.0 | awk '{print $2}') \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.1 | awk '{print $2}') \
+  && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.2 | awk '{print $2}') \
   && apt-get purge -y --auto-remove \
     apache2-bin \
     autoconf \
