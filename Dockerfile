@@ -1,4 +1,4 @@
-FROM yfix/baseimage:18.04
+FROM yfix/baseimage:20.04
 
 MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 
@@ -9,7 +9,7 @@ ARG DEBIAN_FRONTED=noninteractive
 
 RUN apt-get update && apt-get install -my wget gnupg \
   \
-  && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/php.list \
+  && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main" > /etc/apt/sources.list.d/php.list \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C \
   \
   && apt-get update \
