@@ -1,11 +1,11 @@
 version: '3'
 services:
   php:
-#    image: yfix/php
     build: .
-    container_name: yfix_test_php74
+    image: yfix/php:8
+    container_name: yfix_test_php80
     ports:
-      - 39009:9000
+      - 39010:9000
     restart: always
     volumes:
       - ./docker/etc/php/conf.d/:/etc/php/conf.d/

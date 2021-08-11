@@ -1,4 +1,4 @@
-DOCKER_TAG := 'yfix/php:7.4'
+DOCKER_TAG := 'yfix/php:8.0'
 
 build:
 	docker build -t $(DOCKER_TAG) .

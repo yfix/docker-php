@@ -14,30 +14,29 @@ RUN apt-get update && apt-get install -my wget gnupg \
   \
   && apt-get update \
   \
-  && apt-get purge -y --auto-remove php5-* php7.0-* php7.1-* php7.2-* php7.3-* \
+  && apt-get purge -y --auto-remove php5-* php7.0-* php7.1-* php7.2-* php7.3-* php7.4-* \
   \
-  && apt-cache search php7 2>&1 \
-  && apt-cache search php- 2>&1 | egrep -i "(extension|module)" | grep -v php5.6 | sort \
+  && apt-cache search php8 2>&1 \
+  && apt-cache search php- 2>&1 | egrep -i "(extension|module)" | grep -v php7 | sort \
   \
   && apt-get install -y --no-install-recommends \
-    php7.4-cli \
-    php7.4-fpm \
-    php7.4-bcmath \
-    php7.4-bz2 \
-    php7.4-common \
-    php7.4-curl \
-    php7.4-dev \
-    php7.4-gd \
-    php7.4-gmp \
-    php7.4-intl \
-    php7.4-json \
-    php7.4-mbstring \
-    php7.4-mysql \
-    php7.4-opcache \
-    php7.4-pgsql \
-    php7.4-sqlite3 \
-    php7.4-xml \
-    php7.4-zip \
+    php8.0-cli \
+    php8.0-fpm \
+    php8.0-bcmath \
+    php8.0-bz2 \
+    php8.0-common \
+    php8.0-curl \
+    php8.0-dev \
+    php8.0-gd \
+    php8.0-gmp \
+    php8.0-intl \
+    php8.0-mbstring \
+    php8.0-mysql \
+    php8.0-opcache \
+    php8.0-pgsql \
+    php8.0-sqlite3 \
+    php8.0-xml \
+    php8.0-zip \
   \
     php-amqp \
     php-apcu \
@@ -45,6 +44,7 @@ RUN apt-get update && apt-get install -my wget gnupg \
     php-geoip \
     php-igbinary \
     php-imagick \
+    php-json \
     php-memcached \
     php-mongodb \
     php-msgpack \
@@ -68,7 +68,7 @@ RUN apt-get update && apt-get install -my wget gnupg \
 RUN echo "=== continue ===" \
   \
   && pecl install -f rdkafka \
-  && echo 'extension=rdkafka.so' > /etc/php/7.4/mods-available/rdkafka.ini \
+  && echo 'extension=rdkafka.so' > /etc/php/8.0/mods-available/rdkafka.ini \
   && phpenmod rdkafka \
   \
   \
@@ -87,6 +87,7 @@ RUN echo "=== continue ===" \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.1 | awk '{print $2}') \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.2 | awk '{print $2}') \
   && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.3 | awk '{print $2}') \
+  && apt-get purge -y --auto-remove $(dpkg -l | grep ii | grep php7.4 | awk '{print $2}') \
   && apt-get purge -y --auto-remove \
     apache2-bin \
     autoconf \
@@ -111,23 +112,23 @@ RUN echo "=== Fixing links ===" \
   && ls -Rl /etc/php* \
   \
   && rm -vrf /etc/php/5* \
-  && rm -vrf /etc/php/7.4/apache* \
+  && rm -vrf /etc/php/8.0/apache* \
   \
-  && cp -vrf /etc/php/7.4/* /etc/php/ \
+  && cp -vrf /etc/php/8.0/* /etc/php/ \
   \
-  && rm -vrf /etc/php/7.4/* \
-  && rm -vrf /etc/php/7.4/* \
+  && rm -vrf /etc/php/8.0/* \
+  && rm -vrf /etc/php/8.0/* \
   \
   && cp -vrf /etc/php/fpm/conf.d /etc/php/conf.d \
-  && ln -vs /etc/php/mods-available /etc/php/7.4/mods-available \
-  && ln -vs /etc/php/fpm /etc/php/7.4/fpm \
-  && ln -vs /etc/php/cli /etc/php/7.4/cli \
+  && ln -vs /etc/php/mods-available /etc/php/8.0/mods-available \
+  && ln -vs /etc/php/fpm /etc/php/8.0/fpm \
+  && ln -vs /etc/php/cli /etc/php/8.0/cli \
   && rm -vrf /etc/php/fpm/conf.d \
   && ln -vs /etc/php/conf.d /etc/php/fpm/conf.d \
   && rm -vrf /etc/php/cli/conf.d \
   && ln -vs /etc/php/conf.d /etc/php/cli/conf.d \
   \
-  && ln -vs /usr/sbin/php-fpm7.4 /usr/local/sbin/php-fpm \
+  && ln -vs /usr/sbin/php-fpm8.0 /usr/local/sbin/php-fpm \
   \
   && mkdir -p /etc/php/conf.d.dist/ \
   && mv -vf /etc/php/conf.d/*.ini /etc/php/conf.d.dist/ \
